@@ -1,0 +1,35 @@
+name: selftest
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: 回归自测 (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 配置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: 运行 21 项回归自测（零依赖）
+        run: python tests/run_selftest.py
+
+      - name: 校验各脚本 --help 可用
+        run: |
+          python scripts/pcbcalc.py --help > /dev/null
+          python scripts/netlist_check.py --help > /dev/null
+          python scripts/bom_check.py --help > /dev/null
+          python scripts/release_audit.py --help > /dev/null
