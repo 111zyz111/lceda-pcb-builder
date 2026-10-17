@@ -1,5 +1,8 @@
 # lceda-pcb-builder
 
+[![selftest](https://github.com/111zyz111/lceda-pcb-builder/actions/workflows/selftest.yml/badge.svg)](https://github.com/111zyz111/lceda-pcb-builder/actions/workflows/selftest.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 用 **嘉立创EDA专业版（EasyEDA Pro / LCEDA Pro）** 或 **KiCad** 画一块能投板的 PCB。
 
 主入口是 [SKILL.md](SKILL.md)。本文件是给人看的说明。
